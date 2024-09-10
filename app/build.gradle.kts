@@ -1,9 +1,13 @@
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kapt)
     alias(libs.plugins.hilt)
     alias(libs.plugins.sentry)
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.detekt)
 }
 
 android {
@@ -54,6 +58,7 @@ android {
 
 dependencies {
 
+    implementation("androidx.compose.ui:ui-text-google-fonts:1.6.8")
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
 
@@ -83,4 +88,29 @@ dependencies {
 
 kapt {
     correctErrorTypes = true
+}
+
+ktlint {
+    android = true
+    outputColorName = "RED"
+    verbose = true
+    ignoreFailures = true
+    enableExperimentalRules = true
+    baseline = file("$projectDir/config/ktlint/baseline.xml")
+    reporters {
+        reporter(reporterType = ReporterType.PLAIN)
+        reporter(ReporterType.CHECKSTYLE)
+        reporter(ReporterType.SARIF)
+    }
+    kotlinScriptAdditionalPaths {
+        include(fileTree("scripts/"))
+    }
+    filter {
+        exclude("**/generated/**")
+        include("**/kotlin/**")
+    }
+}
+
+detekt {
+    parallel = true
 }

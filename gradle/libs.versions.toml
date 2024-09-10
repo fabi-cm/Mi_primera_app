@@ -12,6 +12,8 @@ retrofit= "2.11.4"
 glide = "4.16.0"
 hilt = "2.52"
 sentry = "4.11.0"
+ktlint = "12.1.1"
+detekt = "1.23.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -33,9 +35,6 @@ glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "gl
 hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt"}
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt"}
 hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt"}
-#sentry = { group = "io.sentry", name = "sentry", version.ref = "sentry" }
-#sentry-android = { group = "io.sentry", name = "sentry-android", version.  ref = "sentry" }
-#sentry-compose-android = { group = "io.sentry", name = "sentry-compose-android", version.ref = "sentry" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -44,3 +43,5 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt"}
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin"}
 sentry = { id = "io.sentry.android.gradle", version.ref = "sentry"}
 
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint"}
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}
